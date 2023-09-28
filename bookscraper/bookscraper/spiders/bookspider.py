@@ -28,16 +28,16 @@ class BookspiderSpider(scrapy.Spider):
     def parse_book_page(self, response):
         table_rows = response.css("table tr")
         yield {
-            'url': response.url,
-            'title':response.css('.product main h1::text').get(),
-            'product_type': table_rows[1].css('td ::text').get(),
-            'price_excl_tax': table_rows[2].css('td ::text').get(),
-            'price_incl_tax': table_rows[3].css('td ::text').get(),
-            'tax': table_rows[4].css('td ::text').get(),
-            'availability':table_rows[5].css('td ::text').get(),
-            'num_reviews': table_rows[6].css('td ::text').get(),
-            'stars': response.css('p.star-rating').attrib['class'],
-            'category': response.xpath("//ul[@class='breadcrumb']/li[@class = 'active']/preceding-sibling::li[1]/a/text()[normalize-space()]").get().strip(),
-            'description': response.xpath("/html/body/div/div/div[2]/div[2]/article/p/text()[normalize-space()]").get().strip(),
-            'price': response.xpath("/html/body/div/div/div[2]/div[2]/article/div[1]/div[2]/p[1]/text()").get().strip(),
+            'URL': response.url,
+            'TITLE':response.css('.product main h1::text').get(),
+            'PRODUCT TYPE': table_rows[1].css('td ::text').get(),
+            'PRICE EXCLUDING TAX': table_rows[2].css('td ::text').get(),
+            'PRIC INCLUDING TAX': table_rows[3].css('td ::text').get(),
+            'TAX': table_rows[4].css('td ::text').get(),
+            'AVAILABILITY':table_rows[5].css('td ::text').get(),
+            'NUM OF REVIEWS': table_rows[6].css('td ::text').get(),
+            'STARS': response.css('p.star-rating').attrib['class'],
+            'CATEGORY': response.xpath("//ul[@class='breadcrumb']/li[@class = 'active']/preceding-sibling::li[1]/a/text()[normalize-space()]").get().strip(),
+            'DESCRIPTION': response.xpath("/html/body/div/div/div[2]/div[2]/article/p/text()[normalize-space()]").get().strip(),
+            'PRICE': response.xpath("/html/body/div/div/div[2]/div[2]/article/div[1]/div[2]/p[1]/text()").get().strip(),
         }
